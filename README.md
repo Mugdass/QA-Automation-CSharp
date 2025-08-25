@@ -52,3 +52,25 @@ Test results shown in CLI or Visual Studio. Add HTML report generation with NUni
 
 
 
+
+
+
+---
+## 🔁 CI/CD Integration
+
+A GitHub Actions workflow is provided to run all **C# NUnit UI tests** in this repo automatically.
+
+### ✅ Workflow: `.github/workflows/ci.yml`
+```yaml
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
+      - run: dotnet restore
+      - run: dotnet test
+
